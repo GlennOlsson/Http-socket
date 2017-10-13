@@ -1,6 +1,5 @@
 package Diamond.etimo;
 
-import oracle.jvm.hotspot.jfr.JFR;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Glenn.httpRequests.iml" filepath="$PROJECT_DIR$/.idea/modules/Glenn.httpRequests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Glenn.httpRequests_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Glenn.httpRequests_main.iml" group="Glenn.httpRequests" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Glenn.httpRequests_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Glenn.httpRequests_test.iml" group="Glenn.httpRequests" />
+    </modules>
+  </component>
+</project>

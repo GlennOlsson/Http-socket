@@ -125,9 +125,10 @@ public class Main implements KeyListener, ActionListener{
 	
 	public static String getKey(String key){
 		try {
+			
 			JSONParser parser = new JSONParser();
 			
-			FileReader readFile = new FileReader("/home/pi/DiamondsSecret.json");
+			FileReader readFile = new FileReader(getPath());
 			
 			String valueOfKey = (String) ((JSONObject)parser.parse(readFile)).get(key);
 			
@@ -137,6 +138,20 @@ public class Main implements KeyListener, ActionListener{
 			e.printStackTrace();
 		}
 		
+		return null;
+	}
+	
+	private static String getPath(){
+		if(System.getProperty("os.name").toLowerCase().contains("windows")){
+			return "C:\\Users\\Glenn\\Documents\\DiscordBot\\Secret.json";
+		}
+		else if (System.getProperty("os.name").toLowerCase().contains("linux")) {
+			return "/home/pi/DiamondsSecret.json";
+		}
+		else if(System.getProperty("os.name").toLowerCase().contains("mac os x")){
+			return "/Users/glenn/Documents/Idea projects/DiamondsSecret.json";
+			
+		}
 		return null;
 	}
 	

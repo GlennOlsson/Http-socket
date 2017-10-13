@@ -257,6 +257,11 @@ public class Game {
 	
 	public void gotoClosestDiamond(long x, long y){
 //
+		
+		if(done){
+			return;
+		}
+		
 //		if(!boardContainsSelfBot()){
 //			return;
 //		}

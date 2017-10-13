@@ -26,7 +26,7 @@ public class Main implements KeyListener, ActionListener{
 			*/
 	
 	Game game;
-	JFrame frame = new JFrame("Keybox");
+//	JFrame frame = new JFrame("Keybox");
 	
 	Bot selfBot;
 	

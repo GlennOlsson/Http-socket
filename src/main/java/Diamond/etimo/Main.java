@@ -1,12 +1,15 @@
 package Diamond.etimo;
+
 import Diamond.etimo.Game.Directions;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Random;
+import java.io.FileReader;
 
 public class Main implements KeyListener, ActionListener{
 	
@@ -35,7 +38,7 @@ public class Main implements KeyListener, ActionListener{
 	}
 	
 	public Main(){		
-		game = new Game(Settings.BOT_TOKEN);
+		game = new Game(getKey("BOT_TOKEN"));
 		
 		//Seeing if board contains bot before trying to join
 		Board board = game.getBoard("1");
@@ -119,4 +122,22 @@ public class Main implements KeyListener, ActionListener{
 	public void actionPerformed(ActionEvent e){
 	
 	}
+	
+	public static String getKey(String key){
+		try {
+			JSONParser parser = new JSONParser();
+			
+			FileReader readFile = new FileReader("/Users/glenn/Documents/Idea projects/DiamondsSecret.java");
+			
+			String valueOfKey = (String) ((JSONObject)parser.parse(readFile)).get(key);
+			
+			return valueOfKey;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 }

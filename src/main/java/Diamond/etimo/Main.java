@@ -127,7 +127,7 @@ public class Main implements KeyListener, ActionListener{
 		try {
 			JSONParser parser = new JSONParser();
 			
-			FileReader readFile = new FileReader("/Users/glenn/Documents/Idea projects/DiamondsSecret.java");
+			FileReader readFile = new FileReader("/home/pi/DiamondsSecret.java");
 			
 			String valueOfKey = (String) ((JSONObject)parser.parse(readFile)).get(key);
 			

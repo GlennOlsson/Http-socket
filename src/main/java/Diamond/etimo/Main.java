@@ -72,8 +72,8 @@ public class Main implements KeyListener, ActionListener{
 //		game.gotoClosestDiamond(selfBot.getX(), selfBot.getY());
 		
 		while(System.currentTimeMillis() - millisOnJoin < 59000) {
-			System.out.println("LOOOOOOP");
-				game.closestRoute();
+//			System.out.println("LOOOOOOP");
+				game.gotoClosestDiamond(selfBot.getX(), selfBot.getY());
 				game.gotoHome();
 		}
 		return;

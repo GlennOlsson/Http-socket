@@ -9,9 +9,9 @@ import java.util.Set;
 
 public class Game {
 	
-	boolean done;
+	private boolean done;
 	
-	Socket socket = new Socket();
+	private Socket socket = new Socket();
 	private String token;
 	
 	private String boardID;
@@ -59,7 +59,7 @@ public class Game {
 				responsePrint = "\nUndefined response code: " + response.getResponseCode() + " (join)";
 		}
 		
-		System.err.print(responsePrint);
+//		System.err.print(responsePrint);
 		
 		Board currentBoard = getBoard(id);
 		this.currentBoard = currentBoard;
@@ -92,7 +92,7 @@ public class Game {
 			default:
 				responsePrint = "\nUndefined response code: " + response.getResponseCode() + " (getBoard)";
 		}
-		System.err.print(responsePrint);
+		// System.err.print(responsePrint);
 		
 		Board thisBoard = new Board(boardJSONString);
 		
@@ -132,7 +132,7 @@ public class Game {
 			Invalid movement
 		*/
 		
-		System.out.println(direction.name());
+//		System.out.println(direction.name());
 		
 		JSONObject json = new JSONObject();
 		json.put("botToken", token);
@@ -166,7 +166,7 @@ public class Game {
 			default:
 				responsePrint = "\nUndefined response code: " + response.getResponseCode() + " (Move)";
 		}
-		System.err.print(responsePrint);
+		// System.err.print(responsePrint);
 		
 		if(response.getResponseCode() == 409){
 			cannotMove = true;
@@ -215,64 +215,41 @@ public class Game {
 		
 		int amountOfDiamonds = diamonds.size();
 		
-		for (int firstDiamondIndex = 0; firstDiamondIndex < diamonds.size(); firstDiamondIndex++) {
+		ArrayList<Diamond> closest = new ArrayList<>();
+		
+		
+		int firstDiamondIndex = 0;
+		//There will be at least 1 diamond
+		while (firstDiamondIndex < amountOfDiamonds){
 			Diamond firstDiamond = diamonds.get(firstDiamondIndex);
-			long startToFirst = getRouteLength(startX, startY, firstDiamond.getX(), firstDiamond.getY());
-			System.out.println("My spot: " + startX + ", " + startY + ". Diamond: " + firstDiamond.getX() + ", " + firstDiamond.getY() +
-					". Distance: " + startToFirst);
 			
-			for (int secondDiamondIndex = 0; secondDiamondIndex < diamonds.size(); secondDiamondIndex++) {
-				Diamond secondDiamond = diamonds.get(secondDiamondIndex);
-				
-				if(secondDiamond == firstDiamond && amountOfDiamonds >= 2){
-					continue;
-				}
-				
-				
-				for (int thirdDiamondIndex = 0; thirdDiamondIndex < diamonds.size(); thirdDiamondIndex++) {
-					Diamond thirdDiamond = diamonds.get(thirdDiamondIndex);
-					
-					if((secondDiamond == thirdDiamond || thirdDiamond == firstDiamond) && amountOfDiamonds >= 3){
-						continue;
-					}
-					
-					for (int fourthDiamondIndex = 0; fourthDiamondIndex < diamonds.size(); fourthDiamondIndex++) {
-						Diamond fourthDiamond = diamonds.get(fourthDiamondIndex);
-						
-						if((fourthDiamond == thirdDiamond || fourthDiamond == firstDiamond || fourthDiamond == secondDiamond)
-								&& amountOfDiamonds >= 4){
-							continue;
-						}
-						
-						for (int fifthDiamondIndex = 0; fifthDiamondIndex < diamonds.size(); fifthDiamondIndex++) {
-							Diamond fifthDiamond = diamonds.get(fifthDiamondIndex);
-							
-							if((fifthDiamond == thirdDiamond || fifthDiamond == firstDiamond || fifthDiamond == secondDiamond
-									|| fifthDiamond == fourthDiamond) && amountOfDiamonds >= 5){
-								continue;
-							}
-							
-							ClosestDiamondPath path = new ClosestDiamondPath(firstDiamond, secondDiamond, thirdDiamond, fourthDiamond,
-									fifthDiamond, baseX, baseY);
-							
-							if(path.getPathLength() < shortestPath){
-								shortestPath = path.getPathLength();
-								shortestPathObject = path;
-							}
-							
-							
-						}
-						
-					}
-					
-				}
-				
+			//If there are less than 5 elements, it does not include the 5 closest
+			if(closest.size() <= 5){
+				closest.add(firstDiamond);
+				firstDiamondIndex++;
+				continue;
 			}
+			
+			//As the list must have 5 or more (if the distance is lower or equal to the highest, it must be accounted for),
+			//I here add elements that has a lower or equal distance as the other elements
+			long longestDistance = 0;
+			for(int i = 0; i < closest.size(); i++){
+				long currentDistance = getRouteLength(startX, startY, closest.get(i).getX(), closest.get(i).getY());
+				if(currentDistance > longestDistance){
+					longestDistance = currentDistance;
+				}
+			}
+			
+			if(getRouteLength(firstDiamond.getX(), firstDiamond.getY(), startX, startY) <= longestDistance){
+				closest.add(firstDiamond);
+			}
+			
+			firstDiamondIndex++;
 		}
 		
 		for(Diamond diamond : shortestPathObject.getDiamonds()){
 			gotoPoint(diamond.getX(), diamond.getY());
-			System.err.println("A DIMOND");
+			// System.err.println("A DIMOND");
 		}
 		
 		
@@ -299,7 +276,7 @@ public class Game {
 		}
 		
 		if(closetDiamond == null){
-			System.err.println("Bad closest diamond!");
+			// System.err.println("Bad closest diamond!");
 			return;
 		}
 
@@ -327,7 +304,7 @@ public class Game {
 		long differenceInY = selfY - y;
 		
 		if(cannotMove){
-			System.out.println("CANNOT MOVE");
+//			System.out.println("CANNOT MOVE");
 			if(differenceInX==0){
 				//If = 0, the bot is trying to go up or down
 				if(selfX > 0){
@@ -415,7 +392,7 @@ public class Game {
 			return;
 		}
 		
-		System.out.println("Done");
+//		System.out.println("Done");
 		
 	}
 	

@@ -3,15 +3,9 @@ package Diamond.etimo;
 import Diamond.etimo.Game.Directions;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.FileReader;
 
-public class Main implements KeyListener, ActionListener{
+public class Main{
 	
 	
 	Directions[] directions = new Directions[]{Directions.North, Directions.South, Directions.East, Directions.West};
@@ -48,6 +42,7 @@ public class Main implements KeyListener, ActionListener{
 			
 			if(bot.getId().equals(Settings.BOT_ID)){
 				botExist = true;
+				Settings.SELF_BOT = bot;
 				i = board.getBots().size() + 5;
 			}
 		}
@@ -57,17 +52,10 @@ public class Main implements KeyListener, ActionListener{
 		
 		if(!botExist) {
 			game.join("1");
+			board = game.getBoard("1");
 		}
 		
-		board = game.getBoard("1");
-		
-		for(Bot bot : board.getBots()){
-			if(bot.getId().equals(Settings.BOT_ID)){
-				selfBot = bot;
-				break;
-				
-			}
-		}
+		selfBot = Settings.SELF_BOT;
 		
 //		game.gotoClosestDiamond(selfBot.getX(), selfBot.getY());
 		
@@ -88,39 +76,6 @@ public class Main implements KeyListener, ActionListener{
 //
 //		}
 //		System.exit(3);
-	}
-	
-	public void keyPressed(KeyEvent e){
-		Directions direction;
-		switch (e.getKeyCode()){
-			case KeyEvent.VK_DOWN:
-				direction = Directions.South;
-				break;
-			case KeyEvent.VK_UP:
-				direction = Directions.North;
-				break;
-			case KeyEvent.VK_RIGHT:
-				direction = Directions.East;
-				break;
-			case KeyEvent.VK_LEFT:
-				direction = Directions.West;
-				break;
-			default:
-				return;
-		}
-		game.move(direction);
-	}
-	
-	public void keyReleased(KeyEvent e){
-	
-	}
-	
-	public void keyTyped(KeyEvent e){
-	
-	}
-	
-	public void actionPerformed(ActionEvent e){
-	
 	}
 	
 	public static String getKey(String key){

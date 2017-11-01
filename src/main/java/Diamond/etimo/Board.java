@@ -50,6 +50,23 @@ public class Board {
 		}
 	}
 	
+	public boolean canMoveToPoint(long x, long y){
+		
+		for(Bot bot : bots){
+			//If there is a bot on the coordinate
+			if(x == bot.getX() && y == bot.getY()){
+				return false;
+			}
+		}
+		
+		//Checks if coordinate is outside board
+		if(x > 9 || x < 0 || y > 9 || y < 0){
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public ArrayList<Bot> getBots() {
 		return bots;
 	}

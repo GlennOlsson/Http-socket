@@ -73,12 +73,12 @@ public class Bot {
 	{
 		"name": "Etimo1",
 			"base": {
-		"x": 0,
-				"y": 8
+						"x": 0,
+						"y": 8
 					},
 		"position": {
-		"x": 0,
-				"y": 4
+						"x": 0,
+						"y": 4
 					},
 		"diamonds": 1,
 			"timeJoined": "2017-10-13T08:32:43.43Z",

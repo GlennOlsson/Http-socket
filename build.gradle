@@ -11,7 +11,7 @@ apply plugin: 'java'
 
 sourceCompatibility = 1.8
 
-mainClassName = 'Diamond.etimo.Main'
+//mainClassName = 'Diamond.etimo.Main'
 
 repositories {
     mavenCentral()

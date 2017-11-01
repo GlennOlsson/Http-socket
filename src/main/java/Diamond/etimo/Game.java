@@ -3,6 +3,7 @@ package Diamond.etimo;
 import jdk.nashorn.internal.runtime.Undefined;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.omg.CORBA.DynAnyPackage.Invalid;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -20,16 +21,14 @@ public class Game {
 	private long baseX;
 	private long baseY;
 	
-	private long lastMove;
+	private long lastMoveTime;
 	
 	private boolean cannotMove = false;
 	
-	private Board currentBoard;
-	
 	public Game(String token){
 		this.token = token;
-		lastMove = 0;
-		currentBoard = getBoard("1");
+		lastMoveTime = 0;
+		Settings.CURRENT_BOARD = getBoard("1");
 	}
 	
 	public void join(String id){
@@ -62,7 +61,7 @@ public class Game {
 //		System.err.print(responsePrint);
 		
 		Board currentBoard = getBoard(id);
-		this.currentBoard = currentBoard;
+		Settings.CURRENT_BOARD = currentBoard;
 		
 		for(Bot bot : currentBoard.getBots()){
 			if(bot.getId().equals(Settings.BOT_ID)){
@@ -96,7 +95,7 @@ public class Game {
 		
 		Board thisBoard = new Board(boardJSONString);
 		
-		this.currentBoard = thisBoard;
+		Settings.CURRENT_BOARD = thisBoard;
 		
 		for(Bot bot : thisBoard.getBots()){
 			if(bot.getId().equals(Settings.BOT_ID)){
@@ -138,33 +137,36 @@ public class Game {
 		json.put("botToken", token);
 		json.put("direction", direction.name());
 		
-		while(System.currentTimeMillis() - lastMove < 150){
+		while(System.currentTimeMillis() - lastMoveTime < 150){
 		}
 		
-		lastMove = System.currentTimeMillis();
+		lastMoveTime = System.currentTimeMillis();
 		
 		Response response = socket.POST("http://diamonds.etimo.se/api/Boards/" + boardID + "/move", json);
-		String boardString = response.getResponseString();
-		
-		String responsePrint = "";
 		switch (response.getResponseCode()){
 			case 200:
-				//responsePrint = "Move was successful";
+				//Move was successful, it then returns the board
+				Settings.CURRENT_BOARD = new Board(response.getResponseString());
+				
 				break;
 			case 400:
-				responsePrint = "\nMove received Bad Request";
+				//Move received Bad Request
+				
 				break;
 			case 403:
-				responsePrint = "\nBot not on board, Bot doesn't exist or to little time since last move";
+				//Bot not on board, Bot doesn't exist or to little time since last move
+				
 				break;
 			case 404:
-				responsePrint = "\nNo board with id " + boardID;
+				//No board with id
+				
 				break;
 			case 409:
-				responsePrint = "\nInvalid movement";
+				//Invalid movement, probably stuck on other bot
+				unstuckBot(direction);
 				break;
 			default:
-				responsePrint = "\nUndefined response code: " + response.getResponseCode() + " (Move)";
+				//Undefined response code: " + response.getResponseCode() + " (Move)"
 		}
 		// System.err.print(responsePrint);
 		
@@ -185,7 +187,7 @@ public class Game {
 		
 		Board board = getBoard("1");
 		
-		this.currentBoard = board;
+		Settings.CURRENT_BOARD = board;
 		
 		for(Bot bot : board.getBots()){
 			if(bot.getId().equals(Settings.BOT_ID)){
@@ -203,11 +205,19 @@ public class Game {
 		return thisRoute;
 	}
 	
+	public void unstuckBot(Directions lastDirection){
+		
+		if(lastDirection == Directions.North){
+		
+		}
+		
+	}
+	
 	public void closestRoute(){
 		long startX = selfX;
 		long startY = selfY;
 		
-		ArrayList<Diamond> diamonds = currentBoard.getDiamonds();
+		ArrayList<Diamond> diamonds = Settings.CURRENT_BOARD.getDiamonds();
 		
 		//To be sure
 		long shortestPath = 50;
@@ -271,8 +281,8 @@ public class Game {
 		//Number high above the actual max
 		long shortestRoute = 50;
 		
-		for(int i = 0; i < currentBoard.getDiamonds().size(); i++){
-			Diamond currentDiamond = currentBoard.getDiamonds().get(i);
+		for(int i = 0; i < Settings.CURRENT_BOARD.getDiamonds().size(); i++){
+			Diamond currentDiamond = Settings.CURRENT_BOARD.getDiamonds().get(i);
 			long thisRoute = getRouteLength(x, y, currentDiamond.getX(), currentDiamond.getY());
 			if(thisRoute < shortestRoute) {
 				shortestRoute = thisRoute;
@@ -308,70 +318,70 @@ public class Game {
 		long differenceInX = selfX - x;
 		long differenceInY = selfY - y;
 		
-		if(cannotMove){
-//			System.out.println("CANNOT MOVE");
-			if(differenceInX==0){
-				//If = 0, the bot is trying to go up or down
-				if(selfX > 0){
-					//Not on the left border
-					if(selfY > 0){
-						//Not on the top border
-						move(Directions.West);
-						move(Directions.North);
-					}
-					else{
-						//On the topmost border
-						move(Directions.West);
-						move(Directions.South);
-					}
-				}
-				else{
-					//On the leftmost border
-					if(selfY > 0){
-						//Not on the top border
-						move(Directions.East);
-						move(Directions.North);
-					}
-					else{
-						//On the topmost border
-						move(Directions.East);
-						move(Directions.South);
-					}
-				}
-			}
-			else{
-				//Trying to move left or right
-				if(selfY > 0){
-					//Not on the top border
-					if(selfX > 0){
-						//Not on the left border
-						move(Directions.North);
-						move(Directions.West);
-					}
-					else {
-						//On the leftmost border
-						move(Directions.North);
-						move(Directions.East);
-					}
-
-				}
-				else{
-					//On the topmost border
-					if(selfX > 0){
-						//Not on the left border
-						move(Directions.South);
-						move(Directions.West);
-					}
-					else {
-						//On the leftmost border
-						move(Directions.South);
-						move(Directions.East);
-					}
-				}
-			}
-			cannotMove = false;
-			return;
-		}
+//		if(cannotMove){
+////			System.out.println("CANNOT MOVE");
+//			if(differenceInX==0){
+//				//If = 0, the bot is trying to go up or down
+//				if(selfX > 0){
+//					//Not on the left border
+//					if(selfY > 0){
+//						//Not on the top border
+//						move(Directions.West);
+//						move(Directions.North);
+//					}
+//					else{
+//						//On the topmost border
+//						move(Directions.West);
+//						move(Directions.South);
+//					}
+//				}
+//				else{
+//					//On the leftmost border
+//					if(selfY > 0){
+//						//Not on the top border
+//						move(Directions.East);
+//						move(Directions.North);
+//					}
+//					else{
+//						//On the topmost border
+//						move(Directions.East);
+//						move(Directions.South);
+//					}
+//				}
+//			}
+//			else{
+//				//Trying to move left or right
+//				if(selfY > 0){
+//					//Not on the top border
+//					if(selfX > 0){
+//						//Not on the left border
+//						move(Directions.North);
+//						move(Directions.West);
+//					}
+//					else {
+//						//On the leftmost border
+//						move(Directions.North);
+//						move(Directions.East);
+//					}
+//
+//				}
+//				else{
+//					//On the topmost border
+//					if(selfX > 0){
+//						//Not on the left border
+//						move(Directions.South);
+//						move(Directions.West);
+//					}
+//					else {
+//						//On the leftmost border
+//						move(Directions.South);
+//						move(Directions.East);
+//					}
+//				}
+//			}
+//			cannotMove = false;
+//			return;
+//		}
 
 		//First all X
 		if(differenceInX > 0){

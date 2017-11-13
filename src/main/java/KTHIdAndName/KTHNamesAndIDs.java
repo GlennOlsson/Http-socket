@@ -122,7 +122,7 @@ public class KTHNamesAndIDs {
 			}
 		}
 		catch (Exception e){
-			System.err.println("ERROR");
+			System.err.println("ERROR " + searchString);
 		}
 	}
 }

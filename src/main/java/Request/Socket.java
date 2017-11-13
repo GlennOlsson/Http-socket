@@ -1,7 +1,8 @@
-package Diamond.etimo;
+package Request;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
@@ -10,7 +11,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.simple.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Socket {
@@ -23,7 +23,9 @@ public class Socket {
 		try{
 			
 			//GET
-			HttpClient client = HttpClientBuilder.create().build();
+			//Setting a timeout in milliseconds
+			RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(2 * 1000).build();
+			HttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(requestConfig).build();
 			HttpGet request = new HttpGet(URL);
 			
 			// add request header

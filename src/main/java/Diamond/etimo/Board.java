@@ -54,7 +54,7 @@ public class Board {
 		
 		for(Bot bot : bots){
 			//If there is a bot on the coordinate
-			if(x == bot.getX() && y == bot.getY()){
+			if(!bot.getId().equals(Settings.BOT_ID) && ( x == bot.getX() && y == bot.getY())){
 				return false;
 			}
 		}
@@ -65,6 +65,27 @@ public class Board {
 		}
 		
 		return true;
+	}
+	
+	public boolean canMoveInDirection(Game.Directions direction){
+		long x = Settings.SELF_BOT.getX();
+		long y = Settings.SELF_BOT.getY();
+		
+		switch (direction){
+			case West:
+				x--;
+				break;
+			case East:
+				x++;
+				break;
+			case North:
+				y++;
+				break;
+			case South:
+				y--;
+				break;
+		}
+		return canMoveToPoint(x, y);
 	}
 	
 	public ArrayList<Bot> getBots() {

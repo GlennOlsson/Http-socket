@@ -1,4 +1,4 @@
-package Diamond.etimo;
+package Request;
 
 public class Response {
 	private int responseCode;

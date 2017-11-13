@@ -1,12 +1,10 @@
 package Diamond.etimo;
 
-import jdk.nashorn.internal.runtime.Undefined;
-import org.json.simple.JSONArray;
+import Request.Response;
+import Request.Socket;
 import org.json.simple.JSONObject;
-import org.omg.CORBA.DynAnyPackage.Invalid;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 public class Game {
 	
@@ -57,7 +55,7 @@ public class Game {
 			default:
 				responsePrint = "\nUndefined response code: " + response.getResponseCode() + " (join)";
 		}
-		
+
 //		System.err.print(responsePrint);
 		
 		Board currentBoard = getBoard(id);
@@ -130,14 +128,15 @@ public class Game {
 		409
 			Invalid movement
 		*/
-		
+
 //		System.out.println(direction.name());
 		
 		JSONObject json = new JSONObject();
 		json.put("botToken", token);
 		json.put("direction", direction.name());
 		
-		while(System.currentTimeMillis() - lastMoveTime < 150){
+		while(System.currentTimeMillis() - lastMoveTime < 50){
+			System.out.println("WAIT");
 		}
 		
 		lastMoveTime = System.currentTimeMillis();
@@ -155,7 +154,6 @@ public class Game {
 				break;
 			case 403:
 				//Bot not on board, Bot doesn't exist or to little time since last move
-				
 				break;
 			case 404:
 				//No board with id
@@ -205,12 +203,20 @@ public class Game {
 		return thisRoute;
 	}
 	
-	public void unstuckBot(Directions lastDirection){
-		
-		if(lastDirection == Directions.North){
-		
+	public void unstuckBot(Directions lastDirection) {
+		Directions direction = getOposite(lastDirection);
+		move(direction);
+		for (int i = 0; i < 2; i++) {
+			Directions newDirection = get90degRotate(direction);
+			if(Settings.CURRENT_BOARD.canMoveInDirection(newDirection)){
+				move(newDirection);
+			}
+			else{
+				move(getOposite(newDirection));
+			}
+			direction = newDirection;
 		}
-		
+		move(lastDirection);
 	}
 	
 	public void closestRoute(){
@@ -219,59 +225,18 @@ public class Game {
 		
 		ArrayList<Diamond> diamonds = Settings.CURRENT_BOARD.getDiamonds();
 		
-		//To be sure
-		long shortestPath = 50;
-		ClosestDiamondPath shortestPathObject = null;
 		
-		int amountOfDiamonds = diamonds.size();
-		
-		ArrayList<Diamond> closest = new ArrayList<>();
-		
-		
-		int firstDiamondIndex = 0;
-		//There will be at least 1 diamond
-		while (firstDiamondIndex < amountOfDiamonds){
-			Diamond firstDiamond = diamonds.get(firstDiamondIndex);
-			
-			//If there are less than 5 elements, it does not include the 5 closest
-			if(closest.size() <= 5){
-				closest.add(firstDiamond);
-				firstDiamondIndex++;
-				continue;
-			}
-			
-			//As the list must have 5 or more (if the distance is lower or equal to the highest, it must be accounted for),
-			//I here add elements that has a lower or equal distance as the other elements
-			long longestDistance = 0;
-			for(int i = 0; i < closest.size(); i++){
-				long currentDistance = getRouteLength(startX, startY, closest.get(i).getX(), closest.get(i).getY());
-				if(currentDistance > longestDistance){
-					longestDistance = currentDistance;
-				}
-			}
-			
-			if(getRouteLength(firstDiamond.getX(), firstDiamond.getY(), startX, startY) <= longestDistance){
-				closest.add(firstDiamond);
-			}
-			
-			firstDiamondIndex++;
-		}
-		
-		for(Diamond diamond : shortestPathObject.getDiamonds()){
-			gotoPoint(diamond.getX(), diamond.getY());
-			// System.err.println("A DIMOND");
-		}
 		
 		
 	}
 	
-	public void gotoClosestDiamond(long x, long y){
+	public void gotoClosestDiamond(long startX, long startY){
 //
 		
 		if(done){
 			return;
 		}
-		
+
 //		if(!boardContainsSelfBot()){
 //			return;
 //		}
@@ -283,7 +248,7 @@ public class Game {
 		
 		for(int i = 0; i < Settings.CURRENT_BOARD.getDiamonds().size(); i++){
 			Diamond currentDiamond = Settings.CURRENT_BOARD.getDiamonds().get(i);
-			long thisRoute = getRouteLength(x, y, currentDiamond.getX(), currentDiamond.getY());
+			long thisRoute = getRouteLength(startX, startY, currentDiamond.getX(), currentDiamond.getY());
 			if(thisRoute < shortestRoute) {
 				shortestRoute = thisRoute;
 				closetDiamond = currentDiamond;
@@ -294,7 +259,7 @@ public class Game {
 			// System.err.println("Bad closest diamond!");
 			return;
 		}
-
+		
 		gotoPoint(closetDiamond.getX(), closetDiamond.getY());
 		if(Settings.SELF_BOT.getAmountOfDiamonds() < 5){
 			gotoClosestDiamond(selfX, selfY);
@@ -311,78 +276,9 @@ public class Game {
 			return;
 		}
 		
-//		if(!boardContainsSelfBot()){
-//			return;
-//		}
-		
 		long differenceInX = selfX - x;
 		long differenceInY = selfY - y;
 		
-//		if(cannotMove){
-////			System.out.println("CANNOT MOVE");
-//			if(differenceInX==0){
-//				//If = 0, the bot is trying to go up or down
-//				if(selfX > 0){
-//					//Not on the left border
-//					if(selfY > 0){
-//						//Not on the top border
-//						move(Directions.West);
-//						move(Directions.North);
-//					}
-//					else{
-//						//On the topmost border
-//						move(Directions.West);
-//						move(Directions.South);
-//					}
-//				}
-//				else{
-//					//On the leftmost border
-//					if(selfY > 0){
-//						//Not on the top border
-//						move(Directions.East);
-//						move(Directions.North);
-//					}
-//					else{
-//						//On the topmost border
-//						move(Directions.East);
-//						move(Directions.South);
-//					}
-//				}
-//			}
-//			else{
-//				//Trying to move left or right
-//				if(selfY > 0){
-//					//Not on the top border
-//					if(selfX > 0){
-//						//Not on the left border
-//						move(Directions.North);
-//						move(Directions.West);
-//					}
-//					else {
-//						//On the leftmost border
-//						move(Directions.North);
-//						move(Directions.East);
-//					}
-//
-//				}
-//				else{
-//					//On the topmost border
-//					if(selfX > 0){
-//						//Not on the left border
-//						move(Directions.South);
-//						move(Directions.West);
-//					}
-//					else {
-//						//On the leftmost border
-//						move(Directions.South);
-//						move(Directions.East);
-//					}
-//				}
-//			}
-//			cannotMove = false;
-//			return;
-//		}
-
 		//First all X
 		if(differenceInX > 0){
 			move(Directions.West);
@@ -400,27 +296,14 @@ public class Game {
 			move(Directions.North);
 			gotoPoint(x,y);
 			return;
+			
 		}
 		else if(differenceInY < 0){
 			move(Directions.South);
 			gotoPoint(x,y);
 			return;
 		}
-		
-//		System.out.println("Done");
-		
 	}
-	
-//	private boolean boardContainsSelfBot(){
-//
-//		for(Bot bot : currentBoard.getBots()){
-//			if(bot.getId().equals(Settings.BOT_ID)){
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-//
 	public void setBotX(long botX) {
 		this.selfX = botX;
 	}
@@ -457,7 +340,38 @@ public class Game {
 		return boardID;
 	}
 	
+	public Directions getOposite(Directions direction){
+		if(direction == Directions.North){
+			return Directions.South;
+		}
+		else if(direction == Directions.South){
+			return Directions.North;
+		}
+		else if(direction == Directions.East){
+			return Directions.West;
+		}
+		//Is west
+		else
+			return Directions.East;
+	}
+	public Directions get90degRotate(Directions direction){
+		
+		if(direction == Directions.North){
+			return Directions.East;
+		}
+		else if(direction == Directions.South){
+			return Directions.West;
+		}
+		else if(direction == Directions.East){
+			return Directions.South;
+		}
+		//Is west
+		else{
+			return Directions.North;
+		}
+	}
+	
 	enum Directions{
-		North, East, South, West
+		North, East, South, West;
 	}
 }

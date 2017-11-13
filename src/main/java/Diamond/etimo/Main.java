@@ -59,9 +59,9 @@ public class Main{
 		
 //		game.gotoClosestDiamond(selfBot.getX(), selfBot.getY());
 		
-		while(System.currentTimeMillis() - millisOnJoin < 59000) {
+		while(System.currentTimeMillis() - millisOnJoin < 60000) {
 //			System.out.println("LOOOOOOP");
-				game.gotoClosestDiamond(selfBot.getX(), selfBot.getY());
+				game.gotoClosestDiamond(Settings.SELF_BOT.getBaseX(), Settings.SELF_BOT.getBaseY());
 				game.gotoHome();
 		}
 		return;

@@ -39,8 +39,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class KTHNamesAndIDs {
-	String pathToIDs = "/Users/glenn/Desktop/KTH_IDs.txt";
-	String pathToOutput = "/Users/glenn/Desktop/KTHIDAndName.json";
+	String pathToIDs = "/NAS/NASDisk/Glenn/KTHIDAndName/KTH_IDs.txt";
+	String pathToOutput = "/NAS/NASDisk/Glenn/KTHIDAndName/KTHIDAndName.json";
 	Socket socket = new Socket();
 	
 	ArrayList<String> kthIDsList = new ArrayList<>();
@@ -56,6 +56,7 @@ public class KTHNamesAndIDs {
 		catch (Exception e){
 			e.printStackTrace();
 		}
+		System.out.println("KLAR");
 	}
 	
 	public KTHNamesAndIDs() throws Exception{
@@ -116,13 +117,12 @@ public class KTHNamesAndIDs {
 				String kthID = (String) resultAsJSON.get("kthid");
 				
 				if(!totalJSONObject.containsKey(kthID)){
-					System.out.println(kthID);
 					totalJSONObject.put(kthID, resultAsJSON);
 				}
 			}
 		}
 		catch (Exception e){
-			System.out.println("ERROR");
+			System.err.println("ERROR");
 		}
 	}
 }

@@ -39,8 +39,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class KTHNamesAndIDs {
-	String pathToIDs = "/Users/glenn/Desktop/KTH_IDs.txt";
-	String pathToOutput = "/Users/glenn/Desktop//KTHIDAndName.json";
+	String pathToIDs = "/NAS/NASDisk/Glenn/KTHIDAndName/KTH_IDs.txt";
+	String pathToOutput = "//NAS/NASDisk/Glenn/KTHIDAndName/KTHIDAndName.json";
 	Socket socket = new Socket();
 	
 	String searchURL = "https://dfunkt.datasektionen.se/kthpeople/search/";

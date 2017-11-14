@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8edc76a4-201a-47df-8751-4f70d9fe6662" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/IdsAndWords.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/KTHIdAndName/KTHNamesAndIDs.class" afterPath="$PROJECT_DIR$/out/production/classes/KTHIdAndName/KTHNamesAndIDs.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/Request/Socket.class" afterPath="$PROJECT_DIR$/out/production/classes/Request/Socket.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" afterPath="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Request/Socket.java" afterPath="$PROJECT_DIR$/src/main/java/Request/Socket.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -105,9 +105,11 @@
       <file leaf-file-name="KTHNamesAndIDs.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="31" column="33" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
-              <folding />
+            <state relative-caret-position="224">
+              <caret line="42" column="60" lean-forward="false" selection-start-line="42" selection-start-column="60" selection-end-line="42" selection-end-column="60" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -983,7 +985,7 @@
       <workItem from="1507979566230" duration="1569000" />
       <workItem from="1509533867707" duration="8225000" />
       <workItem from="1510593052799" duration="8399000" />
-      <workItem from="1510685270174" duration="4015000" />
+      <workItem from="1510685270174" duration="4134000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed the OAth to be secret">
       <created>1507932480092</created>
@@ -1055,11 +1057,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510605929906</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Updated to use less RAM">
+      <created>1510689362634</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1510689362634</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65892000" />
+    <option name="totallyTimeSpent" value="66011000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1114,7 +1123,8 @@
     <MESSAGE value="Commiting to save current code" />
     <MESSAGE value="Making the code ready for a night of KTHIDAndNames. Commenting the e.printStackTrace() in GET so it won't cluster the console" />
     <MESSAGE value="Clarifying error print" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clarifying error print" />
+    <MESSAGE value="Updated to use less RAM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated to use less RAM" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1530,9 +1540,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="31" column="33" lean-forward="false" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
-          <folding />
+        <state relative-caret-position="224">
+          <caret line="42" column="60" lean-forward="false" selection-start-line="42" selection-start-column="60" selection-end-line="42" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

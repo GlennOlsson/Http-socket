@@ -77,8 +77,6 @@ public class KTHNamesAndIDs {
 			String idFile = loadFile(pathToOutput);
 			JSONParser jsonParser = new JSONParser();
 			
-			System.out.println();
-			
 			JSONObject kthUsersJSON = (JSONObject) jsonParser.parse(idFile);
 			JSONArray usersArray = (JSONArray) kthUsersJSON.get("users");
 			

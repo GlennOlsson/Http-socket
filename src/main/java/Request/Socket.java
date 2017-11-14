@@ -24,7 +24,7 @@ public class Socket {
 			
 			//GET
 			//Setting a timeout in milliseconds
-			RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(2 * 1000).build();
+			RequestConfig requestConfig = RequestConfig.custom().setConnectTimeout(4 * 1000).build();
 			HttpClient client = HttpClientBuilder.create().setDefaultRequestConfig(requestConfig).build();
 			HttpGet request = new HttpGet(URL);
 			

@@ -39,13 +39,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class KTHNamesAndIDs {
-	String pathToIDs = "/NAS/NASDisk/Glenn/KTHIDAndName/KTH_IDs.txt";
-	String pathToOutput = "/NAS/NASDisk/Glenn/KTHIDAndName/KTHIDAndName.json";
+	String pathToIDs = "/Users/glenn/Desktop/KTH_IDs.txt";
+	String pathToOutput = "/Users/glenn/Desktop//KTHIDAndName.json";
 	Socket socket = new Socket();
-	
-	ArrayList<String> kthIDsList = new ArrayList<>();
-	
-	JSONObject totalJSONObject = new JSONObject();
 	
 	String searchURL = "https://dfunkt.datasektionen.se/kthpeople/search/";
 	
@@ -61,40 +57,45 @@ public class KTHNamesAndIDs {
 	
 	public KTHNamesAndIDs() throws Exception{
 		//Adding all rows as different ids
-		String[] idList = loadIDs().split("\n");
+		String[] idList = loadFile(pathToIDs).split("\n");
 		
 		ArrayList<KTHUser> userList = new ArrayList<>();
 		
 		for(int i = 0; i < idList.length; i++){
 			String id = idList[i];
-			search(id);
+			addUsersToDocument(search(id));
 		}
-		addUsersToDocument();
 	}
 	
-	public String loadIDs() throws Exception{
-		byte[] fileInBytes = Files.readAllBytes(Paths.get(pathToIDs));
-		String contentOfFile = new String(fileInBytes);
-		
-		//removing @kth.se; from each name so it only contains IDs
-		contentOfFile = contentOfFile.replace("@kth.se;", "");
-		
-		return contentOfFile;
-	}
-	
-	public void addUsersToDocument(){
-		
-		Path path = Paths.get(pathToOutput);
-		
+	public void addUsersToDocument(JSONArray array){
 		try{
-			Files.write(path, totalJSONObject.toJSONString().getBytes());
+			//If the search method returns null, at an exception for example
+			if(array == null){
+				return;
+			}
+			
+			String idFile = loadFile(pathToOutput);
+			JSONParser jsonParser = new JSONParser();
+			
+			System.out.println();
+			
+			JSONObject kthUsersJSON = (JSONObject) jsonParser.parse(idFile);
+			JSONArray usersArray = (JSONArray) kthUsersJSON.get("users");
+			
+			for(Object arrayObject : array){
+				JSONObject arrayObjectAsJSON = (JSONObject) arrayObject;
+				usersArray.add(arrayObjectAsJSON);
+			}
+			
+			Path path = Paths.get(pathToOutput);
+			Files.write(path, kthUsersJSON.toJSONString().getBytes());
 		}
 		catch (Exception e){
 			e.printStackTrace();
 		}
 	}
 	
-	public void search(String searchString) throws Exception{
+	public JSONArray search(String searchString) throws Exception{
 		//TODO: Search id and return the array response
 		
 		ArrayList<KTHUser> usersInResult = new ArrayList<>();
@@ -110,55 +111,24 @@ public class KTHNamesAndIDs {
 		try{
 			JSONObject fullResponseObject = (JSONObject) jsonParser.parse(searchResponse.getResponseString());
 			JSONArray resultsArray = (JSONArray) fullResponseObject.get("results");
-			
+
 //		{"results":[{"fullname":"Glenn Olsson","kthid":"glennol","ugkthid":"u18orpa8"}]}
-			for(Object result : resultsArray){
-				JSONObject resultAsJSON = (JSONObject) result;
-				String kthID = (String) resultAsJSON.get("kthid");
-				
-				if(!totalJSONObject.containsKey(kthID)){
-					totalJSONObject.put(kthID, resultAsJSON);
-				}
-			}
+			
+			return resultsArray;
+			
 		}
 		catch (Exception e){
 			System.err.println("ERROR " + searchString);
 		}
+		//Returns if exception, like if there is a timeout
+		return null;
 	}
+	
+	public String loadFile(String path) throws Exception{
+		byte[] fileInBytes = Files.readAllBytes(Paths.get(path));
+		String contentOfFile = new String(fileInBytes);
+		
+		return contentOfFile;
+	}
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -73,10 +73,17 @@ public class KTHNamesAndIDs {
 		
 		Response searchResponse = socket.GET(searchURL + searchString);
 		
+		if(searchResponse.getResponseCode() == 404){
+			return;
+		}
+		
+		System.out.println(searchResponse.getResponseCode());
+		
 		try {
+			System.out.println("appending: " + searchString);
 			Files.write(Paths.get(pathToOutput), searchResponse.getResponseString().getBytes(), StandardOpenOption.APPEND);
 		}catch (IOException e) {
-			//exception handling left as an exercise for the reader
+		
 		}
 	}
 	

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8edc76a4-201a-47df-8751-4f70d9fe6662" name="Default" comment="">
+    <list default="true" id="8edc76a4-201a-47df-8751-4f70d9fe6662" name="Default" comment="KTHNamesAndIds should now run through the 128 different ID files, instead of keeping the big one in RAM all the time. Let's see">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SplitFile.java" afterPath="$PROJECT_DIR$/src/main/java/SplitFile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" afterPath="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -61,7 +61,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SplitFile.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SplitFile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/SplitFile.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="544">
@@ -73,12 +73,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KTHNamesAndIDs.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="KTHNamesAndIDs.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="89" column="12" lean-forward="true" selection-start-line="89" selection-start-column="12" selection-end-line="90" selection-end-column="70" />
-              <folding />
+            <state relative-caret-position="578">
+              <caret line="58" column="60" lean-forward="false" selection-start-line="58" selection-start-column="60" selection-end-line="58" selection-end-column="60" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -608,8 +610,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Ratsit/Ratsit.java" />
         <option value="$PROJECT_DIR$/src/main/java/Ratsit/RatsitURL.java" />
         <option value="$PROJECT_DIR$/src/main/java/Test.java" />
-        <option value="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" />
         <option value="$PROJECT_DIR$/src/main/java/SplitFile.java" />
+        <option value="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" />
       </list>
     </option>
   </component>
@@ -959,7 +961,7 @@
       <workItem from="1510593052799" duration="8399000" />
       <workItem from="1510685270174" duration="9692000" />
       <workItem from="1511088149386" duration="2329000" />
-      <workItem from="1511183753676" duration="1414000" />
+      <workItem from="1511183753676" duration="1774000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed the OAth to be secret">
       <created>1507932480092</created>
@@ -1066,11 +1068,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511450954297</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="The remaining &lt;1000 ids will also be added">
+      <created>1511451148245</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1511451148246</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75312000" />
+    <option name="totallyTimeSpent" value="75672000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1130,7 +1139,8 @@
     <MESSAGE value="Ratsit is now clearer. Altough only working for birthdate atm" />
     <MESSAGE value="Added new file that splits the big ID file into smaller ones, each containing only 1000 id's. This should make the converter program faster" />
     <MESSAGE value="Now they'll be txt files as well, and the id's will be on different lines... -__-" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now they'll be txt files as well, and the id's will be on different lines... -__-" />
+    <MESSAGE value="The remaining &lt;1000 ids will also be added" />
+    <option name="LAST_COMMIT_MESSAGE" value="The remaining &lt;1000 ids will also be added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1525,18 +1535,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="89" column="12" lean-forward="true" selection-start-line="89" selection-start-column="12" selection-end-line="90" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/SplitFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
           <caret line="32" column="9" lean-forward="false" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="58" column="60" lean-forward="false" selection-start-line="58" selection-start-column="60" selection-end-line="58" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

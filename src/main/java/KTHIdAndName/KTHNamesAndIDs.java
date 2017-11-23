@@ -29,19 +29,15 @@ package KTHIdAndName;
 //import Ratsit.*;
 import Request.Response;
 import Request.Socket;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class KTHNamesAndIDs {
-	String pathToIDs = "/NAS/NASDisk/Glenn/KTHIDAndName/KTH_IDs.txt";
+	String pathToIDs = "/NAS/NASDisk/Glenn/KTHIDAndName/IDsFiles/";
 	String pathToOutput = "//NAS/NASDisk/Glenn/KTHIDAndName/KTHIDAndName.json";
 	Socket socket = new Socket();
 	
@@ -57,48 +53,20 @@ public class KTHNamesAndIDs {
 		System.out.println("KLAR");
 	}
 	
-	public KTHNamesAndIDs() throws Exception{
+	public KTHNamesAndIDs() throws Exception {
 		//Adding all rows as different ids
-		String[] idList = loadFile(pathToIDs).split("\n");
-		
-		ArrayList<KTHUser> userList = new ArrayList<>();
-		
-		for(int i = 0; i < idList.length; i++){
-			String id = idList[i];
-			search(id);
-		}
-	}
-	
-	public void addUsersToDocument(JSONArray array){
-		try{
-			//If the search method returns null, at an exception for example
-			if(array == null){
-				return;
+		for (int i = 0; i < 128; i++) {
+			String[] idList = loadFile(pathToIDs + i + ".txt").split("\n");
+			
+			
+			for (int j = 0; j < idList.length; j++) {
+				String id = idList[j];
+				search(id);
 			}
-			
-			String idFile = loadFile(pathToOutput);
-			JSONParser jsonParser = new JSONParser();
-			
-			JSONObject kthUsersJSON = (JSONObject) jsonParser.parse(idFile);
-			JSONArray usersArray = (JSONArray) kthUsersJSON.get("users");
-			
-			for(Object arrayObject : array){
-				JSONObject arrayObjectAsJSON = (JSONObject) arrayObject;
-				usersArray.add(arrayObjectAsJSON);
-			}
-			
-			Path path = Paths.get(pathToOutput);
-			Files.write(path, kthUsersJSON.toJSONString().getBytes());
-		}
-		catch (Exception e){
-			e.printStackTrace();
 		}
 	}
 	
 	public void search(String searchString) throws Exception{
-		//TODO: Search id and return the array response
-		
-		ArrayList<KTHUser> usersInResult = new ArrayList<>();
 		
 		//Removing the blank spaces so the socket can process it
 		searchString = searchString.replace(" ", "%20");

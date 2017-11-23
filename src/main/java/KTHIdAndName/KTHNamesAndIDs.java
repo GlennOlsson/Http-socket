@@ -56,7 +56,7 @@ public class KTHNamesAndIDs {
 	public KTHNamesAndIDs() throws Exception {
 		//Adding all rows as different ids
 		for (int i = 0; i < 128; i++) {
-			String[] idList = loadFile(pathToIDs + i + ".txt").split("\n");
+			String[] idList = loadFile(pathToIDs + (i+1) + ".txt").split("\n");
 			
 			
 			for (int j = 0; j < idList.length; j++) {

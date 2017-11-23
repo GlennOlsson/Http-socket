@@ -17,7 +17,7 @@ public class SplitFile {
 		    everyThousandCounter ++;
 		    if(everyThousandCounter == 1000){
 			
-			    Path path = Paths.get(pathToNewDir + fileNumber);
+			    Path path = Paths.get(pathToNewDir + fileNumber+".txt");
 			    Files.createFile(path);
 			    Files.write(path, newFileContent.toString().getBytes());
 			    
@@ -28,7 +28,7 @@ public class SplitFile {
 		        
 		    }
 		    
-		    newFileContent.append(lines[i]);
+		    newFileContent.append("\n" + lines[i]);
 		    
 		}
 		

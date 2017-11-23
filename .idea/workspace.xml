@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8edc76a4-201a-47df-8751-4f70d9fe6662" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/SplitFile.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" afterPath="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Ratsit/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Ratsit/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Ratsit/RatsitURL.java" afterPath="$PROJECT_DIR$/src/main/java/Ratsit/RatsitURL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SplitFile.java" afterPath="$PROJECT_DIR$/src/main/java/SplitFile.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -69,7 +65,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/SplitFile.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
-              <caret line="30" column="44" lean-forward="false" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
+              <caret line="30" column="41" lean-forward="false" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -963,7 +959,7 @@
       <workItem from="1510593052799" duration="8399000" />
       <workItem from="1510685270174" duration="9692000" />
       <workItem from="1511088149386" duration="2329000" />
-      <workItem from="1511183753676" duration="1003000" />
+      <workItem from="1511183753676" duration="1210000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed the OAth to be secret">
       <created>1507932480092</created>
@@ -1056,11 +1052,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510694809118</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added new file that splits the big ID file into smaller ones, each containing only 1000 id's. This should make the converter program faster">
+      <created>1511450726015</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1511450726015</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74901000" />
+    <option name="totallyTimeSpent" value="75108000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1118,7 +1121,8 @@
     <MESSAGE value="Updated to use less RAM" />
     <MESSAGE value="Updated path as well" />
     <MESSAGE value="Ratsit is now clearer. Altough only working for birthdate atm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ratsit is now clearer. Altough only working for birthdate atm" />
+    <MESSAGE value="Added new file that splits the big ID file into smaller ones, each containing only 1000 id's. This should make the converter program faster" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new file that splits the big ID file into smaller ones, each containing only 1000 id's. This should make the converter program faster" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1426,6 +1430,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="403">
           <caret line="208" column="39" lean-forward="false" selection-start-line="208" selection-start-column="39" selection-end-line="208" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#4928#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1520,7 +1528,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/SplitFile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
-          <caret line="30" column="44" lean-forward="false" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
+          <caret line="30" column="41" lean-forward="false" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

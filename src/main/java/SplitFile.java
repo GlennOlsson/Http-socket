@@ -13,24 +13,27 @@ public class SplitFile {
 		StringBuilder newFileContent = new StringBuilder();
 		int everyThousandCounter = 0;
 		int fileNumber = 1;
-		for(int i = 0; i < lines.length; i++){
-		    everyThousandCounter ++;
-		    if(everyThousandCounter == 1000){
+		for(int i = 0; i < lines.length; i++) {
+			everyThousandCounter++;
+			if(everyThousandCounter == 1000) {
+				
+				Path path = Paths.get(pathToNewDir + fileNumber + ".txt");
+				Files.createFile(path);
+				Files.write(path, newFileContent.toString().getBytes());
+				
+				newFileContent.setLength(0);
+				
+				fileNumber++;
+				everyThousandCounter = 0;
+				
+			}
 			
-			    Path path = Paths.get(pathToNewDir + fileNumber+".txt");
-			    Files.createFile(path);
-			    Files.write(path, newFileContent.toString().getBytes());
-			    
-			    newFileContent.setLength(0);
-		    	
-		        fileNumber++;
-		        everyThousandCounter = 0;
-		        
-		    }
-		    
-		    newFileContent.append("\n" + lines[i]);
-		    
+			newFileContent.append("\n" + lines[i]);
+			
 		}
+		Path path = Paths.get(pathToNewDir + fileNumber+".txt");
+		Files.createFile(path);
+		Files.write(path, newFileContent.toString().getBytes());
 		
 		
 	}

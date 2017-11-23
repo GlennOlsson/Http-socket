@@ -82,8 +82,8 @@ public class KTHNamesAndIDs {
 		try {
 			System.out.println("appending: " + searchString);
 			Files.write(Paths.get(pathToOutput), searchResponse.getResponseString().getBytes(), StandardOpenOption.APPEND);
-		}catch (IOException e) {
-		
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

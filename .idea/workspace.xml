@@ -76,8 +76,8 @@
       <file leaf-file-name="KTHNamesAndIDs.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="79" column="59" lean-forward="false" selection-start-line="79" selection-start-column="59" selection-end-line="79" selection-end-column="59" />
+            <state relative-caret-position="406">
+              <caret line="85" column="32" lean-forward="true" selection-start-line="85" selection-start-column="32" selection-end-line="85" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1009,7 +1009,7 @@
       <workItem from="1510593052799" duration="8399000" />
       <workItem from="1510685270174" duration="9692000" />
       <workItem from="1511088149386" duration="2329000" />
-      <workItem from="1511183753676" duration="2474000" />
+      <workItem from="1511183753676" duration="2583000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed the OAth to be secret">
       <created>1507932480092</created>
@@ -1151,11 +1151,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511452196801</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Debugging, might be a 404 causing an exit">
+      <created>1511452435425</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1511452435425</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76372000" />
+    <option name="totallyTimeSpent" value="76481000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1220,7 +1227,8 @@
     <MESSAGE value="Commenting the whole Ratsit Package as it contains åäö, which the gradle compiler dislikes" />
     <MESSAGE value="As the 0.txt does not exist, the loop must start at 1" />
     <MESSAGE value="NOW the last commit is correct" />
-    <option name="LAST_COMMIT_MESSAGE" value="NOW the last commit is correct" />
+    <MESSAGE value="Debugging, might be a 404 causing an exit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debugging, might be a 404 causing an exit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1622,8 +1630,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="79" column="59" lean-forward="false" selection-start-line="79" selection-start-column="59" selection-end-line="79" selection-end-column="59" />
+        <state relative-caret-position="406">
+          <caret line="85" column="32" lean-forward="true" selection-start-line="85" selection-start-column="32" selection-end-line="85" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -13,7 +13,7 @@ public class SplitFile {
 		StringBuilder newFileContent = new StringBuilder();
 		int everyThousandCounter = 0;
 		int fileNumber = 1;
-		for(int i = 0; i < lines.length; i++) {
+		for(int i = 1; i < lines.length+1; i++) {
 			everyThousandCounter++;
 			if(everyThousandCounter == 1000) {
 				

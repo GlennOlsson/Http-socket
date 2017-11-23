@@ -73,7 +73,7 @@ public class KTHNamesAndIDs {
 		
 		Response searchResponse = socket.GET(searchURL + searchString);
 		
-		if(searchResponse.getResponseCode() == 404){
+		if(searchResponse == null || searchResponse.getResponseCode() == 404){
 			return;
 		}
 		

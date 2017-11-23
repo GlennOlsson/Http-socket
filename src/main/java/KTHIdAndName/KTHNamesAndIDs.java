@@ -33,9 +33,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class KTHNamesAndIDs {
@@ -63,7 +65,7 @@ public class KTHNamesAndIDs {
 		
 		for(int i = 0; i < idList.length; i++){
 			String id = idList[i];
-			addUsersToDocument(search(id));
+			search(id);
 		}
 	}
 	
@@ -93,7 +95,7 @@ public class KTHNamesAndIDs {
 		}
 	}
 	
-	public JSONArray search(String searchString) throws Exception{
+	public void search(String searchString) throws Exception{
 		//TODO: Search id and return the array response
 		
 		ArrayList<KTHUser> usersInResult = new ArrayList<>();
@@ -103,23 +105,11 @@ public class KTHNamesAndIDs {
 		
 		Response searchResponse = socket.GET(searchURL + searchString);
 		
-		JSONParser jsonParser = new JSONParser();
-		
-		//A try catch, in case the site get's a 404
-		try{
-			JSONObject fullResponseObject = (JSONObject) jsonParser.parse(searchResponse.getResponseString());
-			JSONArray resultsArray = (JSONArray) fullResponseObject.get("results");
-
-//		{"results":[{"fullname":"Glenn Olsson","kthid":"glennol","ugkthid":"u18orpa8"}]}
-			
-			return resultsArray;
-			
+		try {
+			Files.write(Paths.get(pathToOutput), searchResponse.getResponseString().getBytes(), StandardOpenOption.APPEND);
+		}catch (IOException e) {
+			//exception handling left as an exercise for the reader
 		}
-		catch (Exception e){
-			System.err.println("ERROR " + searchString);
-		}
-		//Returns if exception, like if there is a timeout
-		return null;
 	}
 	
 	public String loadFile(String path) throws Exception{

@@ -10,8 +10,8 @@ public class Main {
 	public Main(){
 		
 		try{
-			RatsitURL url = new RatsitURL("Glenn", "Stockholm");
-			url.setAmax("30");
+			RatsitURL url = new RatsitURL("Andreas Åkerblom", "");
+			url.setAmax("60");
 			
 			ArrayList<Ratsit> results = Ratsit.search(url);
 			

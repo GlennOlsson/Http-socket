@@ -204,8 +204,10 @@ public class RatsitURL {
 	}
 	
 	public String getURL(){
-		return "https://www.ratsit.se/sok/person?vem="+vem+"&var="+var+"&m="+m+"&k="+k+"&r="+r+"&er="+er+"&b="+b+"&" +
-				"eb="+eb+"&amin="+amin+"&amax="+amax+"&fon="+fon;
+		String convertedURL = convertUrl("https://www.ratsit.se/sok/person?vem="+vem+"&var="+var+"&m="+m+"&k="+k+"&r="+r+"&er="+er+"&b="+b+"&" +
+				"eb="+eb+"&amin="+amin+"&amax="+amax+"&fon="+fon);
+		System.out.println(convertedURL);
+		return convertedURL;
 	}
 	
 	private static String convertUrl(String urlToConvert){

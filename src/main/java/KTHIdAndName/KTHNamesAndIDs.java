@@ -40,8 +40,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class KTHNamesAndIDs {
-	String inputFile = "/Users/glenn/Desktop/Output.json";
-	String pathToOutput = "/Users/glenn/Desktop/Full.json";
+	String inputFile = "/NAS/NASDisk/Glenn/KTHIDAndName/Output.json";
+	String pathToOutput = "/NAS/NASDisk/Glenn/KTHIDAndName/Full.json";
 	Socket socket = new Socket();
 	
 	String searchURL = "https://dfunkt.datasektionen.se/kthpeople/search/";

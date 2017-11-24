@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8edc76a4-201a-47df-8751-4f70d9fe6662" name="Default" comment="Removing all duplicates in file, in a new way. No JSON, as that slows down the process">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/KTHIdAndName/KTHNamesAndIDs.class" afterPath="$PROJECT_DIR$/out/production/classes/KTHIdAndName/KTHNamesAndIDs.class" />
+    <list default="true" id="8edc76a4-201a-47df-8751-4f70d9fe6662" name="Default" comment="Changing path to fit the π">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" afterPath="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" />
     </list>
@@ -77,8 +76,8 @@
       <file leaf-file-name="KTHNamesAndIDs.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="86" column="71" lean-forward="false" selection-start-line="86" selection-start-column="71" selection-end-line="86" selection-end-column="71" />
+            <state relative-caret-position="323">
+              <caret line="43" column="59" lean-forward="false" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1005,7 +1004,7 @@
       <workItem from="1510593052799" duration="8399000" />
       <workItem from="1510685270174" duration="9692000" />
       <workItem from="1511088149386" duration="2329000" />
-      <workItem from="1511183753676" duration="11691000" />
+      <workItem from="1511183753676" duration="11873000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed the OAth to be secret">
       <created>1507932480092</created>
@@ -1175,11 +1174,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511544521858</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Removing all duplicates in file, in a new way. No JSON, as that slows down the process">
+      <created>1511554163070</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1511554163070</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85589000" />
+    <option name="totallyTimeSpent" value="85771000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1223,7 +1229,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Temporaryly uisng gotoClosestDiamond so that it can be used on Rpi" />
     <MESSAGE value="Temporaryly uisng gotoClosestDiamond so that it can be used on Rpi. Also commenting all prints to keep console clean" />
     <MESSAGE value="Updated build.gradle so it has a main class" />
     <MESSAGE value="Comenting the JFram" />
@@ -1248,7 +1253,8 @@
     <MESSAGE value="Controlling that searchResponse is not null" />
     <MESSAGE value="Removing all duplicates in file" />
     <MESSAGE value="Removing all duplicates in file, in a new way. No JSON, as that slows down the process" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removing all duplicates in file, in a new way. No JSON, as that slows down the process" />
+    <MESSAGE value="Changing path to fit the π" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changing path to fit the π" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1650,8 +1656,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="86" column="71" lean-forward="false" selection-start-line="86" selection-start-column="71" selection-end-line="86" selection-end-column="71" />
+        <state relative-caret-position="323">
+          <caret line="43" column="59" lean-forward="false" selection-start-line="43" selection-start-column="59" selection-end-line="43" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

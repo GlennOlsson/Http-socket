@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8edc76a4-201a-47df-8751-4f70d9fe6662" name="Default" comment="">
+    <list default="true" id="8edc76a4-201a-47df-8751-4f70d9fe6662" name="Default" comment="Removing all duplicates in file, in a new way. No JSON, as that slows down the process">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/KTHIdAndName/KTHNamesAndIDs.class" afterPath="$PROJECT_DIR$/out/production/classes/KTHIdAndName/KTHNamesAndIDs.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" afterPath="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SplitFile.java" afterPath="$PROJECT_DIR$/src/main/java/SplitFile.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -77,8 +77,8 @@
       <file leaf-file-name="KTHNamesAndIDs.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="91" column="13" lean-forward="true" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="13" />
+            <state relative-caret-position="509">
+              <caret line="86" column="71" lean-forward="false" selection-start-line="86" selection-start-column="71" selection-end-line="86" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1005,7 +1005,7 @@
       <workItem from="1510593052799" duration="8399000" />
       <workItem from="1510685270174" duration="9692000" />
       <workItem from="1511088149386" duration="2329000" />
-      <workItem from="1511183753676" duration="8685000" />
+      <workItem from="1511183753676" duration="11691000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed the OAth to be secret">
       <created>1507932480092</created>
@@ -1168,11 +1168,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511452664653</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Removing all duplicates in file">
+      <created>1511544521858</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1511544521858</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82583000" />
+    <option name="totallyTimeSpent" value="85589000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1180,14 +1187,14 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.497558" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32958034" sideWeight="0.497558" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.510989" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32958034" sideWeight="0.489011" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.489011" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26509723" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1216,7 +1223,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed the OAth to be secret" />
     <MESSAGE value="Temporaryly uisng gotoClosestDiamond so that it can be used on Rpi" />
     <MESSAGE value="Temporaryly uisng gotoClosestDiamond so that it can be used on Rpi. Also commenting all prints to keep console clean" />
     <MESSAGE value="Updated build.gradle so it has a main class" />
@@ -1240,7 +1246,9 @@
     <MESSAGE value="Debugging, might be a 404 causing an exit" />
     <MESSAGE value="Printing stack trace" />
     <MESSAGE value="Controlling that searchResponse is not null" />
-    <option name="LAST_COMMIT_MESSAGE" value="Controlling that searchResponse is not null" />
+    <MESSAGE value="Removing all duplicates in file" />
+    <MESSAGE value="Removing all duplicates in file, in a new way. No JSON, as that slows down the process" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removing all duplicates in file, in a new way. No JSON, as that slows down the process" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1642,8 +1650,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="91" column="13" lean-forward="true" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="13" />
+        <state relative-caret-position="509">
+          <caret line="86" column="71" lean-forward="false" selection-start-line="86" selection-start-column="71" selection-end-line="86" selection-end-column="71" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -40,8 +40,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class KTHNamesAndIDs {
-	String inputFile = "/NAS/NASDisk/Glenn/KTHIDAndName/Output.json";
-	String pathToOutput = "/NAS/NASDisk/Glenn/KTHIDAndName/Full.json";
+	String inputFile = "/Users/glenn/Desktop/Output.json";
+	String pathToOutput = "/Users/glenn/Desktop/Full.json";
 	Socket socket = new Socket();
 	
 	String searchURL = "https://dfunkt.datasektionen.se/kthpeople/search/";
@@ -66,31 +66,25 @@ public class KTHNamesAndIDs {
 	public void JSONFileing(){
 		try {
 			String fileContent = loadFile(inputFile);
+			int fromIndex = 0;
+			int indexOfResult = 0;
 			
-			JSONParser parser = new JSONParser();
-			JSONObject fullObject = (JSONObject) parser.parse(fileContent);
-			System.out.println("Loaded in JSON");
-			
-			JSONArray bigArray = (JSONArray) fullObject.get("arrayOfAll");
-			System.out.println(bigArray.size());
-			
-			for (int i = 0; i < bigArray.size(); i++) {
-				JSONArray thisResultArray = (JSONArray) ((JSONObject) bigArray.get(i)).get("results");
+			while(indexOfResult < fileContent.length()) {
+				String result = fileContent.substring(fileContent.indexOf("{\"fullname", fromIndex),
+						fileContent.indexOf("\"}", fromIndex) + 2);
 				
-				for (int j = 0; j < thisResultArray.size(); j++) {
-					String thisResult = thisResultArray.get(j).toString();
-			
-					int indexOfResult = fileContent.indexOf(thisResult);
-					fileContent = fileContent.replace(thisResult, "");
-					fileContent.substring(0, fileContent.length() - 2);
-					
-					fileContent = ",\n" + fileContent + thisResult + "]}";
-					
-				}
-				System.out.println(i);
+				indexOfResult = fileContent.indexOf(result);
+				
+				fileContent = fileContent.replace(result, "");
+				fileContent = fileContent.substring(0, indexOfResult) + result + fileContent.substring(indexOfResult);
+				
+				fromIndex = indexOfResult + result.length();
+				
+				System.out.println(result);
 				
 			}
-				Files.write(Paths.get(pathToOutput), fileContent.getBytes(), StandardOpenOption.APPEND);
+			
+			Files.write(Paths.get(pathToOutput), fileContent.getBytes());
 			
 		}catch (Exception e){
 			e.printStackTrace();

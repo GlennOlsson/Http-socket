@@ -29,6 +29,9 @@ package KTHIdAndName;
 //import Ratsit.*;
 import Request.Response;
 import Request.Socket;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -37,8 +40,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class KTHNamesAndIDs {
-	String pathToIDs = "/NAS/NASDisk/Glenn/KTHIDAndName/IDsFiles/";
-	String pathToOutput = "//NAS/NASDisk/Glenn/KTHIDAndName/KTHIDAndName.json";
+	String inputFile = "/NAS/NASDisk/Glenn/KTHIDAndName/Output.json";
+	String pathToOutput = "/NAS/NASDisk/Glenn/KTHIDAndName/Full.json";
 	Socket socket = new Socket();
 	
 	String searchURL = "https://dfunkt.datasektionen.se/kthpeople/search/";
@@ -55,14 +58,42 @@ public class KTHNamesAndIDs {
 	
 	public KTHNamesAndIDs() throws Exception {
 		//Adding all rows as different ids
-		for (int i = 0; i < 128; i++) {
-			String[] idList = loadFile(pathToIDs + (i+1) + ".txt").split("\n");
+		
+		JSONFileing();
+	
+	}
+	
+	public void JSONFileing(){
+		try {
+			String fileContent = loadFile(inputFile);
 			
+			JSONParser parser = new JSONParser();
+			JSONObject fullObject = (JSONObject) parser.parse(fileContent);
+			System.out.println("Loaded in JSON");
 			
-			for (int j = 0; j < idList.length; j++) {
-				String id = idList[j];
-				search(id);
+			JSONArray bigArray = (JSONArray) fullObject.get("arrayOfAll");
+			System.out.println(bigArray.size());
+			
+			for (int i = 0; i < bigArray.size(); i++) {
+				JSONArray thisResultArray = (JSONArray) ((JSONObject) bigArray.get(i)).get("results");
+				
+				for (int j = 0; j < thisResultArray.size(); j++) {
+					String thisResult = thisResultArray.get(j).toString();
+			
+					int indexOfResult = fileContent.indexOf(thisResult);
+					fileContent = fileContent.replace(thisResult, "");
+					fileContent.substring(0, fileContent.length() - 2);
+					
+					fileContent = ",\n" + fileContent + thisResult + "]}";
+					
+				}
+				System.out.println(i);
+				
 			}
+				Files.write(Paths.get(pathToOutput), fileContent.getBytes(), StandardOpenOption.APPEND);
+			
+		}catch (Exception e){
+			e.printStackTrace();
 		}
 	}
 	

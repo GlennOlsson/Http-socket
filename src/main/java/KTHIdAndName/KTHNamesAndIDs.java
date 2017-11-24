@@ -40,7 +40,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class KTHNamesAndIDs {
-	String inputFile = "/NAS/NASDisk/Glenn/KTHIDAndName/Output.json";
+	String inputFile = "/NAS/NASDisk/Glenn/KTHIDAndName/JSONFiles/";
 	String pathToOutput = "/NAS/NASDisk/Glenn/KTHIDAndName/Full.json";
 	Socket socket = new Socket();
 	
@@ -58,14 +58,15 @@ public class KTHNamesAndIDs {
 	
 	public KTHNamesAndIDs() throws Exception {
 		//Adding all rows as different ids
-		
-		JSONFileing();
+		for (int i = 1; i < 4; i++) {
+			JSONFileing(i);
+		}
 	
 	}
 	
-	public void JSONFileing(){
+	public void JSONFileing(int fileNumber){
 		try {
-			String fileContent = loadFile(inputFile);
+			String fileContent = loadFile(inputFile + fileNumber + ".txt");
 			int fromIndex = 0;
 			int indexOfResult = 0;
 			
@@ -84,7 +85,7 @@ public class KTHNamesAndIDs {
 				
 			}
 			
-			Files.write(Paths.get(pathToOutput), fileContent.getBytes());
+			Files.write(Paths.get(pathToOutput), fileContent.getBytes(), StandardOpenOption.APPEND);
 			
 		}catch (Exception e){
 			e.printStackTrace();

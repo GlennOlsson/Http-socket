@@ -40,8 +40,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
 public class KTHNamesAndIDs {
-	String inputFile = "/NAS/NASDisk/Glenn/KTHIDAndName/JSONFiles/";
-	String pathToOutput = "/NAS/NASDisk/Glenn/KTHIDAndName/Full.json";
+	String inputFile = "/NASDisk/Glenn/KTHIDAndName/JSONFiles/";
+	String pathToOutput = "/NASDisk/Glenn/KTHIDAndName/Full.json";
 	Socket socket = new Socket();
 	
 	String searchURL = "https://dfunkt.datasektionen.se/kthpeople/search/";
@@ -58,6 +58,16 @@ public class KTHNamesAndIDs {
 	
 	public KTHNamesAndIDs() throws Exception {
 		//Adding all rows as different ids
+		
+		if (System.getProperty("os.name").toLowerCase().contains("linux")) {
+			inputFile =  "/NAS" + inputFile;
+			pathToOutput = "/NAS" + pathToOutput;
+		}
+		else if(System.getProperty("os.name").toLowerCase().contains("mac os x")){
+			inputFile = "/Volumes" + inputFile;
+			pathToOutput = "/Volumes" + pathToOutput;
+		}
+		
 		for (int i = 1; i < 4; i++) {
 			JSONFileing(i);
 		}
@@ -70,18 +80,26 @@ public class KTHNamesAndIDs {
 			int fromIndex = 0;
 			int indexOfResult = 0;
 			
+			System.out.println(fileContent.substring(0, 500));
+			
+			int amountOfResults = 0;
+			
 			while(indexOfResult < fileContent.length()) {
+				
+				amountOfResults++;
+				
+				System.out.println("Result nr: " + amountOfResults + " from file nr: " + fileNumber);
+				
 				String result = fileContent.substring(fileContent.indexOf("{\"fullname", fromIndex),
-						fileContent.indexOf("\"}", fromIndex) + 2);
+						fileContent.indexOf("\"}", fromIndex + 5) + 2);
 				
 				indexOfResult = fileContent.indexOf(result);
 				
 				fileContent = fileContent.replace(result, "");
-				fileContent = fileContent.substring(0, indexOfResult) + result + fileContent.substring(indexOfResult);
+				fileContent = fileContent  + "\n" + result;
 				
-				fromIndex = indexOfResult + result.length();
+				fromIndex = indexOfResult;
 				
-				System.out.println(result);
 				
 			}
 			

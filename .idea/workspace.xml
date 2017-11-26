@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8edc76a4-201a-47df-8751-4f70d9fe6662" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/classes/KTHIdAndName/KTHNamesAndIDs.class" afterPath="$PROJECT_DIR$/out/production/classes/KTHIdAndName/KTHNamesAndIDs.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" afterPath="$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/SplitFile.java" afterPath="$PROJECT_DIR$/src/main/java/SplitFile.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -77,8 +77,8 @@
       <file leaf-file-name="KTHNamesAndIDs.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="43" column="31" lean-forward="false" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+            <state relative-caret-position="204">
+              <caret line="88" column="34" lean-forward="false" selection-start-line="88" selection-start-column="34" selection-end-line="88" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -802,7 +802,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SplitFile">
+  <component name="RunManager" selected="Application.KTHNamesAndIDs">
     <configuration name="Glenn.httpRequests [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -975,8 +975,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.SplitFile" />
-        <item index="1" class="java.lang.String" itemvalue="Application.KTHNamesAndIDs" />
+        <item index="0" class="java.lang.String" itemvalue="Application.KTHNamesAndIDs" />
+        <item index="1" class="java.lang.String" itemvalue="Application.SplitFile" />
         <item index="2" class="java.lang.String" itemvalue="Gradle.Glenn.httpRequests [run]" />
         <item index="3" class="java.lang.String" itemvalue="Application.Test" />
         <item index="4" class="java.lang.String" itemvalue="Application.Main" />
@@ -1003,7 +1003,7 @@
       <workItem from="1510593052799" duration="8399000" />
       <workItem from="1510685270174" duration="9692000" />
       <workItem from="1511088149386" duration="2329000" />
-      <workItem from="1511183753676" duration="14225000" />
+      <workItem from="1511183753676" duration="17631000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed the OAth to be secret">
       <created>1507932480092</created>
@@ -1187,11 +1187,18 @@
       <option name="project" value="LOCAL" />
       <updated>1511554354914</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="New method, by utilising three input files insead of one, so the π might be able to handle the big size">
+      <created>1511557334901</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1511557334901</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88123000" />
+    <option name="totallyTimeSpent" value="91529000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1235,7 +1242,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Temporaryly uisng gotoClosestDiamond so that it can be used on Rpi. Also commenting all prints to keep console clean" />
     <MESSAGE value="Updated build.gradle so it has a main class" />
     <MESSAGE value="Comenting the JFram" />
     <MESSAGE value=".java --&gt; .json" />
@@ -1260,11 +1266,12 @@
     <MESSAGE value="Removing all duplicates in file" />
     <MESSAGE value="Removing all duplicates in file, in a new way. No JSON, as that slows down the process" />
     <MESSAGE value="Changing path to fit the π" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changing path to fit the π" />
+    <MESSAGE value="New method, by utilising three input files insead of one, so the π might be able to handle the big size" />
+    <option name="LAST_COMMIT_MESSAGE" value="New method, by utilising three input files insead of one, so the π might be able to handle the big size" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1662,8 +1669,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/KTHIdAndName/KTHNamesAndIDs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="43" column="31" lean-forward="false" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+        <state relative-caret-position="204">
+          <caret line="88" column="34" lean-forward="false" selection-start-line="88" selection-start-column="34" selection-end-line="88" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

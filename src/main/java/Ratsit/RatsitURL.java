@@ -1,27 +1,19 @@
 /*
- * Copyright 2017 GoJb Development
+ * Copyright 2017 Glenn
  *
- * Permission is hereby granted, free of charge, to any
- * person obtaining a copy of this software and associated
- *  documentation files (the "Software"), to deal in the Software
- *  without restriction, including without limitation the rights to
- *  use, copy, modify, merge, publish, distribute, sublicense, and/or
- *  sell copies of the Software, and to permit persons to whom
- *  the Software is furnished to do so, subject to the following
- *  conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+ * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons
+ * to whom the Software is furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall
- * be included in all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+ * Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
- * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
- * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
- * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
- * SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR
- * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
- * OR OTHER DEALINGS IN THE SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
 package Ratsit;
@@ -41,23 +33,23 @@ public class RatsitURL {
 
 	var - plats separerat med +
 
-	m - 1 om man vill söka på män, 0 om inte
+	m - 1 om man vill soka pa man, 0 om inte
 
-	k - 1 om man vill söka på kvinnor, 0 om inte
+	k - 1 om man vill soka pa kvinnor, 0 om inte
 
-	r - 1 om man vill söka på gifta, 0 om inte
+	r - 1 om man vill soka pa gifta, 0 om inte
 
-	er - 1 om man vill söka på ogifta, 0 om inte
+	er - 1 om man vill soka pa ogifta, 0 om inte
 
-	b - 1 om man vill söka på folk med bolagsengagemang, 0 om inte
+	b - 1 om man vill soka pa folk med bolagsengagemang, 0 om inte
 
-	eb - 1 om man vill söka på folk utan bolagsengagemang, 0 om inte
+	eb - 1 om man vill soka pa folk utan bolagsengagemang, 0 om inte
 
-	amin - lägsta ålder, "" om inget
+	amin - lagsta alder, "" om inget
 
-	amax - högsta ålder, "" om inget
+	amax - hogsta alder, "" om inget
 
-	r - exakt stavning, 1 om man inte vill ha exakt, 2??? om man vill
+	r - exakt stavning, 1 om man inte vill ha exakt, 0 om man vill
 	  */
 
 	private String who;
@@ -107,10 +99,6 @@ public class RatsitURL {
 
 	}
 
-	public RatsitURL getRatsitURL(){
-		return this;
-	}
-
 	public RatsitURL(String url){
 		this.url = url;
 	}
@@ -123,28 +111,32 @@ public class RatsitURL {
 		this.ageMin = Integer.toString(ageMin);
 	}
 	
-	public void setBusiness(String business) {
-		this.business = business;
+	public void setExactSpelling(boolean exactSpelling) {
+		this.exactSpelling = exactSpelling ? "0" : "1";
 	}
 	
-	public void setExactSpelling(String exactSpelling) {
-		this.exactSpelling = exactSpelling;
+	public void setMan(boolean man) {
+		this.man = man ? "0" : "1";
 	}
 	
-	public void setMan(String man) {
-		this.man = man;
+	public void setWoman(boolean woman) {
+		this.woman = woman ? "0" : "1";
 	}
 	
-	public void setMarried(String married) {
-		this.married = married;
+	public void setMarried(boolean married) {
+		this.married = married ? "0" : "1";
 	}
 	
-	public void setNonBusiness(String nonBusiness) {
-		this.nonBusiness = nonBusiness;
+	public void setUnMarried(boolean unMarried) {
+		this.unMarried = unMarried ? "1":"0";;
 	}
 	
-	public void setUnMarried(String unMarried) {
-		this.unMarried = unMarried;
+	public void setBusiness(boolean business) {
+		this.business = business ? "0" : "1";
+	}
+	
+	public void setNonBusiness(boolean nonBusiness) {
+		this.nonBusiness = nonBusiness ? "0" : "1";
 	}
 	
 	public void setUrl(String url) {
@@ -173,10 +165,6 @@ public class RatsitURL {
 	
 	public String getWoman() {
 		return woman;
-	}
-	
-	public void setWoman(String woman) {
-		this.woman = woman;
 	}
 	
 	public String getMarried() {

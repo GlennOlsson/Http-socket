@@ -38,13 +38,16 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class KTHNamesAndIDs {
-	String inputFile = "/NASDisk/Glenn/KTHIDAndName/JSONFiles/";
-	String pathToOutput = "/NASDisk/Glenn/KTHIDAndName/Full.json";
-	Socket socket = new Socket();
+	private String inputFile = "/NASDisk/Glenn/KTHIDAndName/ActuallJSON.json/";
+	private String pathToOutput = "/NASDisk/Glenn/KTHIDAndName/Full.json";
+	private Socket socket = new Socket();
 	
-	String searchURL = "https://dfunkt.datasektionen.se/kthpeople/search/";
+	private JSONArray bigArray;
+	
+	private String searchURL = "https://dfunkt.datasektionen.se/kthpeople/search/";
 	
 	public static void main(String[] args) {
 		try{
@@ -56,22 +59,31 @@ public class KTHNamesAndIDs {
 		System.out.println("KLAR");
 	}
 	
-	public KTHNamesAndIDs() throws Exception {
-		//Adding all rows as different ids
-		
-		if (System.getProperty("os.name").toLowerCase().contains("linux")) {
-			inputFile =  "/NAS" + inputFile;
-			pathToOutput = "/NAS" + pathToOutput;
-		}
-		else if(System.getProperty("os.name").toLowerCase().contains("mac os x")){
-			inputFile = "/Volumes" + inputFile;
-			pathToOutput = "/Volumes" + pathToOutput;
-		}
-		
-		for (int i = 1; i < 4; i++) {
-			JSONFileing(i);
-		}
+	public JSONArray getBigArray() {
+		return bigArray;
+	}
 	
+	public KTHNamesAndIDs() {
+		//Adding all rows as different ids
+		try {
+			if(System.getProperty("os.name").toLowerCase().contains("linux")) {
+				inputFile = "/NAS" + inputFile;
+				pathToOutput = "/NAS" + pathToOutput;
+			} else if(System.getProperty("os.name").toLowerCase().contains("mac os x")) {
+				inputFile = "/Volumes" + inputFile;
+				pathToOutput = "/Volumes" + pathToOutput;
+			}
+			
+			String contentOfFile = loadFile(inputFile);
+			
+			JSONParser parser = new JSONParser();
+			JSONObject bigObject = (JSONObject) parser.parse(contentOfFile);
+			
+			bigArray = (JSONArray) bigObject.get("KTHPeople");
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void JSONFileing(int fileNumber){
@@ -80,30 +92,41 @@ public class KTHNamesAndIDs {
 			int fromIndex = 0;
 			int indexOfResult = 0;
 			
-			System.out.println(fileContent.substring(0, 500));
+			StringBuilder newContent = new StringBuilder();
+			
+			newContent.append(loadFile(pathToOutput));
 			
 			int amountOfResults = 0;
 			
-			while(indexOfResult < fileContent.length()) {
+			while(fromIndex < fileContent.length()) {
 				
 				amountOfResults++;
+
+//				System.out.println("Result nr: " + amountOfResults + " from file nr: " + fileNumber);
 				
-				System.out.println("Result nr: " + amountOfResults + " from file nr: " + fileNumber);
+				if(fileContent.indexOf("{\"fullname", fromIndex) == -1 ||
+						fileContent.indexOf("\"}", fromIndex) + 2 == -1){
+					System.out.println("FULL");
+					fromIndex = Integer.MAX_VALUE - 5;
+					continue;
+				}
 				
 				String result = fileContent.substring(fileContent.indexOf("{\"fullname", fromIndex),
-						fileContent.indexOf("\"}", fromIndex + 5) + 2);
+						fileContent.indexOf("\"}", fromIndex) + 2);
 				
-				indexOfResult = fileContent.indexOf(result);
-				
-				fileContent = fileContent.replace(result, "");
-				fileContent = fileContent  + "\n" + result;
-				
-				fromIndex = indexOfResult;
+				fromIndex = fileContent.indexOf(result, fromIndex) + result.length();
 				
 				
+				if(newContent.indexOf(result) == -1){
+					newContent.append(result);
+					System.out.println("ADDED: " + result + " __ Amount: " + amountOfResults + " Nr: " + fileNumber);
+				}
+				else{
+					System.out.println("NOT ADDED: " + result + " -- Amount: " + amountOfResults + " Nr: " + fileNumber);
+				}
 			}
 			
-			Files.write(Paths.get(pathToOutput), fileContent.getBytes(), StandardOpenOption.APPEND);
+			Files.write(Paths.get(pathToOutput), newContent.toString().getBytes());
 			
 		}catch (Exception e){
 			e.printStackTrace();
@@ -111,27 +134,19 @@ public class KTHNamesAndIDs {
 	}
 	
 	public void search(String searchString) throws Exception{
+		String contentOfFile = loadFile(inputFile);
 		
-		//Removing the blank spaces so the socket can process it
-		searchString = searchString.replace(" ", "%20");
+		int randomNr = new Random().nextInt(bigArray.size());
 		
-		Response searchResponse = socket.GET(searchURL + searchString);
+		JSONObject randomPerson = (JSONObject) bigArray.get(randomNr);
 		
-		if(searchResponse == null || searchResponse.getResponseCode() == 404){
-			return;
-		}
+		System.out.println(randomPerson.get("fullname"));
+		System.out.println(randomPerson.get("kthid"));
+		System.out.println();
 		
-		System.out.println(searchResponse.getResponseCode());
-		
-		try {
-			System.out.println("appending: " + searchString);
-			Files.write(Paths.get(pathToOutput), searchResponse.getResponseString().getBytes(), StandardOpenOption.APPEND);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
-	public String loadFile(String path) throws Exception{
+	public static String loadFile(String path) throws Exception{
 		byte[] fileInBytes = Files.readAllBytes(Paths.get(path));
 		String contentOfFile = new String(fileInBytes);
 		

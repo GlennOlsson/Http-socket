@@ -1,31 +1,48 @@
-//package Ratsit;
+package Ratsit;
+
+import KTHIdAndName.BookRoom;
+import KTHIdAndName.KTHNamesAndIDs;
+import KTHIdAndName.KTHUser;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import java.util.ArrayList;
+
+public class Main {
+	public static void main(String[] args) {
+		new Main();
+	}
+
+	public Main(){
+		
+		JSONArray kthArray = new KTHNamesAndIDs().getBigArray();
+
+//		JSONObject glennObject = (JSONObject) kthArray.get(114713);
+		
+		for (int i = 0; i < kthArray.size(); i++) {
+			JSONObject glennObject = (JSONObject) kthArray.get(i);
+			
+		}
+
+//		KTHUser glennKTH = new KTHUser(glennObject);
 //
-//import java.util.ArrayList;
+//		RatsitURL searchForGlenn = new RatsitURL(glennKTH.getFullname(), "");
+//		searchForGlenn.setAgeMin(18);
+//		searchForGlenn.setAgeMax(25);
 //
-//public class Main {
-//	public static void main(String[] args) {
-//		new Main();
-//	}
+//		ArrayList<Ratsit> glennRatsit = Ratsit.search(searchForGlenn);
 //
-//	public Main(){
+//		ArrayList<String> socialSec = new ArrayList<>();
 //
-//		try{
-//			RatsitURL url = new RatsitURL("Andreas Åkerblom", "");
-//			url.setAmax("60");
-//
-//			ArrayList<Ratsit> results = Ratsit.search(url);
-//
-//			for(Ratsit result : results){
-//				System.out.println(result.getFodelsedatum());
-//			}
-//
+//		for (int i = 0; i < glennRatsit.size(); i++) {
+//			String socialSecString = glennRatsit.get(i).getPersonalNumber().replace("-XXXX", "");
+//			//Removing 19 or 20 from 1998...../2002.....
+//			socialSec.add(socialSecString.substring(2));
+//			System.out.println(glennKTH.getFullname() + " : " + socialSecString);
 //		}
-//		catch (Exception e){
-//			e.printStackTrace();
-//			return;
-//		}
 //
-//
-//
-//	}
-//}
+//		BookRoom booking = new BookRoom(glennKTH.getKTHID(), socialSec);
+//		booking.login();
+//		booking.bookRoomAtTime(BookRoom.GroupRoom.Al_Khwarizmi, 9, 1, 11, 29);
+	}
+}

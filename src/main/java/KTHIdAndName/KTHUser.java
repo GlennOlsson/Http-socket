@@ -1,5 +1,7 @@
 package KTHIdAndName;
 
+import org.json.simple.JSONObject;
+
 public class KTHUser {
 	
 	private String fullname;
@@ -10,6 +12,12 @@ public class KTHUser {
 		this.fullname = fullname;
 		this.kthid = kthID;
 		this.ugkthid = ugKTHID;
+	}
+	
+	public KTHUser(JSONObject object){
+		fullname = (String) object.get("fullname");
+		kthid = (String) object.get("kthid");
+		ugkthid = (String) object.get("ugkthid");
 	}
 	
 	public String getFullname() {
